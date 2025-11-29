@@ -1,0 +1,14 @@
+generator client {
+  provider     = "prisma-client"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Member {
+
+  @@map("members")
+}
