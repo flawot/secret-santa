@@ -1,5 +1,6 @@
 generator client {
   provider     = "prisma-client"
+  output       = "generated"
   moduleFormat = "cjs"
 }
 
@@ -9,6 +10,18 @@ datasource db {
 }
 
 model Member {
+  id       Int    @id @default(autoincrement())
+  telegram Int    @unique
+  name     String
 
   @@map("members")
+}
+
+model Connection {
+  id Int @id @default(autoincrement())
+
+  giverId     Int @map("giver_id")
+  recipientId Int @map("recipient_id")
+
+  @@map("connections")
 }
