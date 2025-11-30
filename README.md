@@ -1,98 +1,106 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+```markdown
+# Secret Santa Bot
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Телеграм бот для автоматизации жеребьёвки Тайного Санты, написанный на NestJS. Бот позволяет участникам в ограниченный период времени зарегистрироваться для участия в игре, указать свои пожелания, а затем проводит анонимную жеребьёвку среди зарегистрированных участников.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## ✨ Функциональность
 
-## Description
+- 📝 **Регистрация участников** - команды `/register` и `/unregister` для участия в игре
+- 👤 **Настройка профиля** - возможность указать имя и пожелания для подарков
+- 🎁 **Автоматическая жеребьёвка** - организатор запускает распределение участников
+- 🔒 **Анонимность** - бот гарантирует честное и конфиденциальное распределение
+- 📊 **Профиль участника** - просмотр своей текущей информации
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 🎯 Команды бота
 
-## Project setup
+- `/register` - зарегистрироваться для участия в Тайном Санте
+- `/unregister` - отменить регистрацию
+- `/set_name` - установить/изменить своё имя
+- `/set_wishes` - указать пожелания для подарков
+- `/profile` - посмотреть свой текущий профиль
+- `/santa` - **только для организатора** - запустить жеребьёвку
+
+## 🛠 Технологии
+
+- **Framework**: NestJS
+- **Telegram Integration**: nestjs-telegraf
+- **Database**: PostgreSQL
+- **ORM**: Prisma
+- **Language**: TypeScript
+
+## 📋 Предварительные требования
+
+- Node.js версии 20 или выше
+- PostgreSQL база данных
+- Токен Telegram Bot (получить у [@BotFather](https://t.me/BotFather))
+
+## 🚀 Установка и запуск
+
+1. **Клонирование репозитория**
+   ```bash
+   git clone <url-вашего-репозитория>
+   cd secret-santa-bot
+   ```
+
+2. **Установка зависимостей**
+   ```bash
+   npm install
+   ```
+
+3. **Настройка окружения**
+   Создайте файл `.env` в корне проекта и добавьте:
+   ```env
+   DATABASE_URL="postgresql://username:password@localhost:5432/secret_santa"
+   TELEGRAM_TOKEN="your_telegram_bot_token_here"
+   ```
+
+4. **Настройка базы данных**
+   ```bash
+   # Запуск миграций Prisma
+   npx prisma generate
+   npx prisma db push
+   ```
+
+5. **Запуск приложения**
+   ```bash
+   # Development режим
+   npm run start
+
+   # Watch режим
+   npm run start:dev
+
+   # Production режим
+   npm run start:prod
+   ```
+
+## ⚙️ Конфигурация
+
+Перед использованием необходимо:
+
+1. Указать ID организатора в коде (для доступа к команде `/santa`)
+2. Установить дату окончания регистрации в коде
+
+## 📦 Сборка для продакшена
 
 ```bash
-$ npm install
+# Сборка проекта
+npm run build
+
+# Запуск собранной версии
+npm run start:prod
 ```
 
-## Compile and run the project
+## 🤝 Участие в разработке
 
-```bash
-# development
-$ npm run start
+Хотя проект не позиционируется для активного публичного развития, улучшения и предложения приветствуются! Если у вас есть идеи по улучшению функционала или исправлению ошибок - буду рад вашим пул-реквестам.
 
-# watch mode
-$ npm run start:dev
+## 📝 Особенности реализации
 
-# production mode
-$ npm run start:prod
-```
+- Бот предназначен для использования в небольших закрытых группах
+- Регистрация участников ограничена по времени
+- Жеребьёвку может запустить только назначенный организатор
+- Минимальные данные участников (только имя и пожелания)
 
-## Run tests
+---
 
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
-```
-
-## Deployment
-
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+*Для получения дополнительной информации обращайтесь к разработчику бота.*
