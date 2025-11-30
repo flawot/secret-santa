@@ -33,20 +33,20 @@ export type ConnectionAvgAggregateOutputType = {
 
 export type ConnectionSumAggregateOutputType = {
   id: number | null
-  giverId: number | null
-  recipientId: number | null
+  giverId: bigint | null
+  recipientId: bigint | null
 }
 
 export type ConnectionMinAggregateOutputType = {
   id: number | null
-  giverId: number | null
-  recipientId: number | null
+  giverId: bigint | null
+  recipientId: bigint | null
 }
 
 export type ConnectionMaxAggregateOutputType = {
   id: number | null
-  giverId: number | null
-  recipientId: number | null
+  giverId: bigint | null
+  recipientId: bigint | null
 }
 
 export type ConnectionCountAggregateOutputType = {
@@ -176,8 +176,8 @@ export type ConnectionGroupByArgs<ExtArgs extends runtime.Types.Extensions.Inter
 
 export type ConnectionGroupByOutputType = {
   id: number
-  giverId: number
-  recipientId: number
+  giverId: bigint
+  recipientId: bigint
   _count: ConnectionCountAggregateOutputType | null
   _avg: ConnectionAvgAggregateOutputType | null
   _sum: ConnectionSumAggregateOutputType | null
@@ -205,8 +205,8 @@ export type ConnectionWhereInput = {
   OR?: Prisma.ConnectionWhereInput[]
   NOT?: Prisma.ConnectionWhereInput | Prisma.ConnectionWhereInput[]
   id?: Prisma.IntFilter<"Connection"> | number
-  giverId?: Prisma.IntFilter<"Connection"> | number
-  recipientId?: Prisma.IntFilter<"Connection"> | number
+  giverId?: Prisma.BigIntFilter<"Connection"> | bigint | number
+  recipientId?: Prisma.BigIntFilter<"Connection"> | bigint | number
 }
 
 export type ConnectionOrderByWithRelationInput = {
@@ -220,8 +220,8 @@ export type ConnectionWhereUniqueInput = Prisma.AtLeast<{
   AND?: Prisma.ConnectionWhereInput | Prisma.ConnectionWhereInput[]
   OR?: Prisma.ConnectionWhereInput[]
   NOT?: Prisma.ConnectionWhereInput | Prisma.ConnectionWhereInput[]
-  giverId?: Prisma.IntFilter<"Connection"> | number
-  recipientId?: Prisma.IntFilter<"Connection"> | number
+  giverId?: Prisma.BigIntFilter<"Connection"> | bigint | number
+  recipientId?: Prisma.BigIntFilter<"Connection"> | bigint | number
 }, "id">
 
 export type ConnectionOrderByWithAggregationInput = {
@@ -240,47 +240,47 @@ export type ConnectionScalarWhereWithAggregatesInput = {
   OR?: Prisma.ConnectionScalarWhereWithAggregatesInput[]
   NOT?: Prisma.ConnectionScalarWhereWithAggregatesInput | Prisma.ConnectionScalarWhereWithAggregatesInput[]
   id?: Prisma.IntWithAggregatesFilter<"Connection"> | number
-  giverId?: Prisma.IntWithAggregatesFilter<"Connection"> | number
-  recipientId?: Prisma.IntWithAggregatesFilter<"Connection"> | number
+  giverId?: Prisma.BigIntWithAggregatesFilter<"Connection"> | bigint | number
+  recipientId?: Prisma.BigIntWithAggregatesFilter<"Connection"> | bigint | number
 }
 
 export type ConnectionCreateInput = {
-  giverId: number
-  recipientId: number
+  giverId: bigint | number
+  recipientId: bigint | number
 }
 
 export type ConnectionUncheckedCreateInput = {
   id?: number
-  giverId: number
-  recipientId: number
+  giverId: bigint | number
+  recipientId: bigint | number
 }
 
 export type ConnectionUpdateInput = {
-  giverId?: Prisma.IntFieldUpdateOperationsInput | number
-  recipientId?: Prisma.IntFieldUpdateOperationsInput | number
+  giverId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  recipientId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type ConnectionUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  giverId?: Prisma.IntFieldUpdateOperationsInput | number
-  recipientId?: Prisma.IntFieldUpdateOperationsInput | number
+  giverId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  recipientId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type ConnectionCreateManyInput = {
   id?: number
-  giverId: number
-  recipientId: number
+  giverId: bigint | number
+  recipientId: bigint | number
 }
 
 export type ConnectionUpdateManyMutationInput = {
-  giverId?: Prisma.IntFieldUpdateOperationsInput | number
-  recipientId?: Prisma.IntFieldUpdateOperationsInput | number
+  giverId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  recipientId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type ConnectionUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
-  giverId?: Prisma.IntFieldUpdateOperationsInput | number
-  recipientId?: Prisma.IntFieldUpdateOperationsInput | number
+  giverId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
+  recipientId?: Prisma.BigIntFieldUpdateOperationsInput | bigint | number
 }
 
 export type ConnectionCountOrderByAggregateInput = {
@@ -346,8 +346,8 @@ export type $ConnectionPayload<ExtArgs extends runtime.Types.Extensions.Internal
   objects: {}
   scalars: runtime.Types.Extensions.GetPayloadResult<{
     id: number
-    giverId: number
-    recipientId: number
+    giverId: bigint
+    recipientId: bigint
   }, ExtArgs["result"]["connection"]>
   composites: {}
 }
@@ -772,8 +772,8 @@ export interface Prisma__ConnectionClient<T, Null = never, ExtArgs extends runti
  */
 export interface ConnectionFieldRefs {
   readonly id: Prisma.FieldRef<"Connection", 'Int'>
-  readonly giverId: Prisma.FieldRef<"Connection", 'Int'>
-  readonly recipientId: Prisma.FieldRef<"Connection", 'Int'>
+  readonly giverId: Prisma.FieldRef<"Connection", 'BigInt'>
+  readonly recipientId: Prisma.FieldRef<"Connection", 'BigInt'>
 }
     
 

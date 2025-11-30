@@ -11,7 +11,7 @@ datasource db {
 
 model Member {
   id       Int     @id @default(autoincrement())
-  telegram Int     @unique
+  telegram BigInt  @unique
   name     String
   list     String?
 
@@ -21,8 +21,8 @@ model Member {
 model Connection {
   id Int @id @default(autoincrement())
 
-  giverId     Int @map("giver_id")
-  recipientId Int @map("recipient_id")
+  giverId     BigInt @map("giver_id")
+  recipientId BigInt @map("recipient_id")
 
   @@map("connections")
 }
