@@ -2,6 +2,7 @@ import { Module } from '@nestjs/common';
 import { TelegramService } from './telegram.service';
 import { ConfigModule } from '@nestjs/config';
 import { TelegrafModule } from 'nestjs-telegraf';
+import { Telegraf } from 'telegraf';
 
 @Module({
   imports: [
@@ -10,6 +11,7 @@ import { TelegrafModule } from 'nestjs-telegraf';
       token: process.env.TELEGRAM_TOKEN!,
     }),
   ],
-  providers: [TelegramService],
+  providers: [TelegramService, Telegraf],
+  exports: [TelegramService],
 })
 export class TelegramModule {}
