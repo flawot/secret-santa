@@ -71,7 +71,8 @@ export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof
 export const MemberScalarFieldEnum = {
   id: 'id',
   telegram: 'telegram',
-  name: 'name'
+  name: 'name',
+  list: 'list'
 } as const
 
 export type MemberScalarFieldEnum = (typeof MemberScalarFieldEnum)[keyof typeof MemberScalarFieldEnum]
@@ -100,4 +101,12 @@ export const QueryMode = {
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

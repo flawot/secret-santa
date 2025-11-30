@@ -39,18 +39,21 @@ export type MemberMinAggregateOutputType = {
   id: number | null
   telegram: number | null
   name: string | null
+  list: string | null
 }
 
 export type MemberMaxAggregateOutputType = {
   id: number | null
   telegram: number | null
   name: string | null
+  list: string | null
 }
 
 export type MemberCountAggregateOutputType = {
   id: number
   telegram: number
   name: number
+  list: number
   _all: number
 }
 
@@ -69,18 +72,21 @@ export type MemberMinAggregateInputType = {
   id?: true
   telegram?: true
   name?: true
+  list?: true
 }
 
 export type MemberMaxAggregateInputType = {
   id?: true
   telegram?: true
   name?: true
+  list?: true
 }
 
 export type MemberCountAggregateInputType = {
   id?: true
   telegram?: true
   name?: true
+  list?: true
   _all?: true
 }
 
@@ -174,6 +180,7 @@ export type MemberGroupByOutputType = {
   id: number
   telegram: number
   name: string
+  list: string | null
   _count: MemberCountAggregateOutputType | null
   _avg: MemberAvgAggregateOutputType | null
   _sum: MemberSumAggregateOutputType | null
@@ -203,12 +210,14 @@ export type MemberWhereInput = {
   id?: Prisma.IntFilter<"Member"> | number
   telegram?: Prisma.IntFilter<"Member"> | number
   name?: Prisma.StringFilter<"Member"> | string
+  list?: Prisma.StringNullableFilter<"Member"> | string | null
 }
 
 export type MemberOrderByWithRelationInput = {
   id?: Prisma.SortOrder
   telegram?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  list?: Prisma.SortOrderInput | Prisma.SortOrder
 }
 
 export type MemberWhereUniqueInput = Prisma.AtLeast<{
@@ -218,12 +227,14 @@ export type MemberWhereUniqueInput = Prisma.AtLeast<{
   OR?: Prisma.MemberWhereInput[]
   NOT?: Prisma.MemberWhereInput | Prisma.MemberWhereInput[]
   name?: Prisma.StringFilter<"Member"> | string
+  list?: Prisma.StringNullableFilter<"Member"> | string | null
 }, "id" | "telegram">
 
 export type MemberOrderByWithAggregationInput = {
   id?: Prisma.SortOrder
   telegram?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  list?: Prisma.SortOrderInput | Prisma.SortOrder
   _count?: Prisma.MemberCountOrderByAggregateInput
   _avg?: Prisma.MemberAvgOrderByAggregateInput
   _max?: Prisma.MemberMaxOrderByAggregateInput
@@ -238,51 +249,60 @@ export type MemberScalarWhereWithAggregatesInput = {
   id?: Prisma.IntWithAggregatesFilter<"Member"> | number
   telegram?: Prisma.IntWithAggregatesFilter<"Member"> | number
   name?: Prisma.StringWithAggregatesFilter<"Member"> | string
+  list?: Prisma.StringNullableWithAggregatesFilter<"Member"> | string | null
 }
 
 export type MemberCreateInput = {
   telegram: number
   name: string
+  list?: string | null
 }
 
 export type MemberUncheckedCreateInput = {
   id?: number
   telegram: number
   name: string
+  list?: string | null
 }
 
 export type MemberUpdateInput = {
   telegram?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  list?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberUncheckedUpdateInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   telegram?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  list?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberCreateManyInput = {
   id?: number
   telegram: number
   name: string
+  list?: string | null
 }
 
 export type MemberUpdateManyMutationInput = {
   telegram?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  list?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberUncheckedUpdateManyInput = {
   id?: Prisma.IntFieldUpdateOperationsInput | number
   telegram?: Prisma.IntFieldUpdateOperationsInput | number
   name?: Prisma.StringFieldUpdateOperationsInput | string
+  list?: Prisma.NullableStringFieldUpdateOperationsInput | string | null
 }
 
 export type MemberCountOrderByAggregateInput = {
   id?: Prisma.SortOrder
   telegram?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  list?: Prisma.SortOrder
 }
 
 export type MemberAvgOrderByAggregateInput = {
@@ -294,12 +314,14 @@ export type MemberMaxOrderByAggregateInput = {
   id?: Prisma.SortOrder
   telegram?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  list?: Prisma.SortOrder
 }
 
 export type MemberMinOrderByAggregateInput = {
   id?: Prisma.SortOrder
   telegram?: Prisma.SortOrder
   name?: Prisma.SortOrder
+  list?: Prisma.SortOrder
 }
 
 export type MemberSumOrderByAggregateInput = {
@@ -319,33 +341,41 @@ export type StringFieldUpdateOperationsInput = {
   set?: string
 }
 
+export type NullableStringFieldUpdateOperationsInput = {
+  set?: string | null
+}
+
 
 
 export type MemberSelect<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   telegram?: boolean
   name?: boolean
+  list?: boolean
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectCreateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   telegram?: boolean
   name?: boolean
+  list?: boolean
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectUpdateManyAndReturn<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetSelect<{
   id?: boolean
   telegram?: boolean
   name?: boolean
+  list?: boolean
 }, ExtArgs["result"]["member"]>
 
 export type MemberSelectScalar = {
   id?: boolean
   telegram?: boolean
   name?: boolean
+  list?: boolean
 }
 
-export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "telegram" | "name", ExtArgs["result"]["member"]>
+export type MemberOmit<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = runtime.Types.Extensions.GetOmit<"id" | "telegram" | "name" | "list", ExtArgs["result"]["member"]>
 
 export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs = runtime.Types.Extensions.DefaultArgs> = {
   name: "Member"
@@ -354,6 +384,7 @@ export type $MemberPayload<ExtArgs extends runtime.Types.Extensions.InternalArgs
     id: number
     telegram: number
     name: string
+    list: string | null
   }, ExtArgs["result"]["member"]>
   composites: {}
 }
@@ -780,6 +811,7 @@ export interface MemberFieldRefs {
   readonly id: Prisma.FieldRef<"Member", 'Int'>
   readonly telegram: Prisma.FieldRef<"Member", 'Int'>
   readonly name: Prisma.FieldRef<"Member", 'String'>
+  readonly list: Prisma.FieldRef<"Member", 'String'>
 }
     
 
