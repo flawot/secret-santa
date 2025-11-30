@@ -15,6 +15,13 @@ export class RegisterScene {
 
   @SceneEnter()
   async enter(@Ctx() ctx: RegisterContext) {
+    if (new Date() > new Date(2025, 11, 4)) {
+      await ctx.reply(
+        'Период регистрации был закончен и вы больше не можете сделать это',
+      );
+      return;
+    }
+
     await ctx.reply(
       'Введите своё ФИО (Не вводите неправильные данные чтобы ваш санта понял кому дарить подарок)',
     );

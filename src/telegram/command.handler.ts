@@ -25,8 +25,20 @@ export class CommandHandler {
     await ctx.scene.enter('wishes');
   }
 
+  @Command('set_name')
+  async SetName(@Ctx() ctx: Scenes.SceneContext) {
+    await ctx.scene.enter('name');
+  }
+
   @Command('unregister')
   async UnRegister(@Ctx() ctx: Context) {
+    if (new Date() > new Date(2025, 12, 4)) {
+      await ctx.reply(
+        'Период регистрации был закончен и вы больше не можете сделать это',
+      );
+      return;
+    }
+
     const user = await this.prisma.member.findUnique({
       where: { telegram: ctx.from?.id },
     });
