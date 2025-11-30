@@ -100,7 +100,7 @@ export class CommandHandler {
 
       await this.bot.telegram.sendMessage(
         `${user.telegram}`,
-        `Твой "подопечный" это **${recipient.name}**\n\nЕго пожелания для подарка:\n${recipient.list}\n\nНапоминаю что сумма подарка должна быть от 500 до 1000 рублей. Желаю вам удачи`,
+        `Твой "подопечный" это ${recipient.name}\n\nЕго пожелания для подарка:\n${recipient.list}\n\nНапоминаю что сумма подарка должна быть от 500 до 1000 рублей. Желаю вам удачи`,
       );
       await this.prisma.connection.create({
         data: { giverId: user.id, recipientId: recipient.id },
