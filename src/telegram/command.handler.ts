@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Command, Ctx, Start, Update } from 'nestjs-telegraf';
-import { Context, Markup, Scenes } from 'telegraf';
+import { Command, Ctx, InjectBot, Start, Update } from 'nestjs-telegraf';
+import { Context, Markup, Scenes, Telegraf } from 'telegraf';
 import { welcome } from '../../config.json';
 import { PrismaService } from 'src/prisma/prisma.service';
 
@@ -9,7 +9,10 @@ const initialState = welcome;
 @Update()
 @Injectable()
 export class CommandHandler {
-  constructor(private prisma: PrismaService) {}
+  constructor(
+    private prisma: PrismaService,
+    @InjectBot() private bot: Telegraf,
+  ) {}
 
   @Start()
   async Start(@Ctx() ctx: Context) {
@@ -75,6 +78,34 @@ export class CommandHandler {
     if (ctx.from?.id !== 6580692836) return;
 
     await ctx.reply('Запускаю тайного санту!');
+    const users = await this.prisma.member.findMany();
+    const connections = await this.prisma.connection.findMany();
+
+    for (let i = 0; i < users.length; i++) {
+      const user = users[i];
+
+      const recipients = users.filter(
+        (u) => u.id !== user.id && !connections.find((p) => p.id === u.id),
+      );
+      if (recipients.length == 0) {
+        await this.bot.telegram.sendMessage(
+          `${user.telegram}`,
+          'К сожалению нету свободных людей для вручения кому-то подарка',
+        );
+        return;
+      }
+
+      const recipient =
+        recipients[Math.floor(Math.random() * recipients.length)];
+
+      await this.bot.telegram.sendMessage(
+        `${user.telegram}`,
+        `Твой "подопечный" это **${recipient.name}**\n\nЕго пожелания для подарка:\n${recipient.list}\n\nНапоминаю что сумма подарка должна быть от 500 до 1000 рублей. Желаю вам удачи`,
+      );
+      await this.prisma.connection.create({
+        data: { giverId: user.id, recipientId: recipient.id },
+      });
+    }
   }
 
   @Command('profile')
