@@ -64,4 +64,20 @@ export class CommandHandler {
 
     await ctx.reply('Запускаю тайного санту!');
   }
+
+  @Command('profile')
+  async Profile(@Ctx() ctx: Context) {
+    const user = await this.prisma.member.findUnique({
+      where: { telegram: ctx.from?.id },
+    });
+
+    if (!user) {
+      await ctx.reply('Вы ещё не приняли участие в тайном санте! /register');
+      return;
+    }
+
+    await ctx.reply(
+      `Данные для вашего санты: \n\nФИО: ${user.name}\nПожелания: ${user.list || 'Отсутсвуют'}\n\nВы можете поменять имя или пожелания через /set_name или /set_wishes`,
+    );
+  }
 }

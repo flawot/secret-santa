@@ -8,6 +8,7 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import { session } from 'telegraf';
 import { RegisterScene } from './register.scene';
 import { WishesScene } from './wishes.scene';
+import { NameScene } from './name.scene';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { WishesScene } from './wishes.scene';
     PrismaService,
     RegisterScene,
     WishesScene,
+    NameScene,
   ],
   exports: [TelegramService],
 })

@@ -21,6 +21,14 @@ export class TelegramService implements OnModuleInit {
         command: 'unregister',
         description: 'Отказ от участия в тайном санте',
       },
+      {
+        command: 'profile',
+        description: 'Показывает данне которые вы указали для санты',
+      },
+      {
+        command: 'set_name',
+        description: 'Устанавливает ФИО если вы указали неправильно',
+      },
     ]);
   }
 }
