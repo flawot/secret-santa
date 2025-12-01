@@ -37,7 +37,7 @@
 
 1. **Клонирование репозитория**
    ```bash
-   git clone <url-вашего-репозитория>
+   git clone https://github.com/flawot/secret-santa.git
    cd secret-santa-bot
    ```
 
