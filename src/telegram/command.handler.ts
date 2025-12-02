@@ -79,14 +79,24 @@ export class CommandHandler {
 
     await ctx.reply('Запускаю тайного санту!');
     const users = await this.prisma.member.findMany();
-    const connections = await this.prisma.connection.findMany();
 
     for (let i = 0; i < users.length; i++) {
+      const connections = await this.prisma.connection.findMany();
       const user = users[i];
 
-      const recipients = users.filter(
-        (u) => u.id !== user.id && !connections.find((p) => p.id === u.id),
-      );
+      const recipients = users.filter((u) => {
+        const connection = connections.find((p) => p.recipientId === u.id);
+
+        if (u.id === user.id) {
+          return false;
+        }
+
+        if (connection) {
+          return false;
+        }
+        return true;
+      });
+
       if (recipients.length == 0) {
         await this.bot.telegram.sendMessage(
           `${user.telegram}`,
